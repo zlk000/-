@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>简易倒计时</title>
+    <style>
+        * {margin: 0; padding: 0; box-sizing: border-box; font-family: Arial}
+        body {text-align: center; padding-top: 100px; background: #f5f5f5}
+        #time {font-size: 80px; margin: 30px 0; font-weight: bold}
+        input {width: 300px; font-size: 24px; padding: 8px; text-align: center; margin-bottom: 20px}
+        button {font-size: 20px; padding: 10px 25px; margin: 0 8px; cursor: pointer}
+    </style>
+</head>
+<body>
+    <input type="number" id="inputNum" placeholder="输入倒计时秒数">
+    <div id="time">00:00</div>
+    <button onclick="start()">开始</button>
+    <button onclick="pause()">暂停</button>
+    <button onclick="reset()">重置</button>
+
+    <script>
+        let timer = null;
+        let totalSec = 0;
+
+        // 格式化秒数为 分:秒
+        function format(s) {
+            let m = Math.floor(s / 60);
+            let sec = s % 60;
+            return String(m).padStart(2, '0') + ':' + String(sec).padStart(2, '0');
+        }
+
+        // 开始倒计时
+        function start() {
+            if (!timer) {
+                totalSec = Number(document.getElementById('inputNum').value);
+                timer = setInterval(() => {
+                    if (totalSec <= 0) {
+                        clearInterval(timer);
+                        timer = null;
+                        alert("时间到！");
+                        return;
+                    }
+                    totalSec--;
+                    document.getElementById('time').innerText = format(totalSec);
+                }, 1000)
+            }
+        }
+
+        // 暂停
+        function pause() {
+            clearInterval(timer);
+            timer = null;
+        }
+
+        // 重置清零
+        function reset() {
+            clearInterval(timer);
+            timer = null;
+            totalSec = 0;
+            document.getElementById('time').innerText = "00:00";
+            document.getElementById('inputNum').value = "";
+        }
+    </script>
+</body>
+</html>
