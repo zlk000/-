@@ -1,39 +1,44 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
+<!-- 版本1：基础倒计时页面 --> 
+头>
     <meta charset="UTF-8">
     <title>简易倒计时</title>
-    <style>
-        * {margin: 0; padding: 0; box-sizing: border-box; font-family: Arial}
-        body {text-align: center; padding-top: 100px; background: #f5f5f5}
-        #time {font-size: 80px; margin: 30px 0; font-weight: bold}
-        input {width: 300px; font-size: 24px; padding: 8px; text-align: center; margin-bottom: 20px}
-        button {font-size: 20px; padding: 10px 25px; margin: 0 8px; cursor: pointer}
-    </style>
-</head>
-<body>
-    <input type="number" id="inputNum" placeholder="输入倒计时秒数">
-    <div id="time">00:00</div>
-    <button onclick="start()">开始</button>
-    <button onclick="pause()">暂停</button>
-    <button onclick="reset()">重置</button>
+    <样式>
+        * {边距: 0; 内边距: 0; 盒模型: 边框盒; 字体族: Arial}
+        body {文本对齐: 居中; 上内边距: 100px; 背景: #f5f5f5}
+        #时间
+{字体大小: 80像素;
+边缘: 30像素 0;
+字体粗细: 粗体}
 
-    <script>
-        let timer = null;
-        let totalSec = 0;
+«
+
+头
+        按钮 {字体大小: 20像素; 内边距: 10像素 25像素; 外边距: 0 8像素; 光标: 指针}
+    </样式>
+</头>
+«»
+    <输入 类型="数字" id="输入数字" 提示="输入倒计时秒数">
+    <div id="时间">00:00</div>
+    <按钮 点击="开始()">开始</按钮>
+    <按钮 点击="暂停()">暂停</按钮>
+    <按钮="重置()">重置</按钮>
+
+    <脚本>
+        让 计时器 = 无;
+        让 总秒数 = 0;
 
         // 格式化秒数为 分:秒
-        function format(s) {
-            let m = Math.floor(s / 60);
-            let sec = s % 60;
+        函数 格式(s) {
+            让 m = Math.floor(s / 60);
+            设 角 = 秒 % 60;
             return String(m).padStart(2, '0') + ':' + String(sec).padStart(2, '0');
         }
 
         // 开始倒计时
-        function start() {
-            if (!timer) {
-                totalSec = Number(document.getElementById('inputNum').value);
-                timer = setInterval(() => {
+        功能启动() {
+                totalSec = Number(document.getElementById('输入数字').value);
+                totalSec = Number(document.getElementById('输入数字').value);
+                定时器 = 设置间隔(() => {
                     if (totalSec <= 0) {
                         clearInterval(timer);
                         timer = null;
